@@ -1,38 +1,47 @@
-const themeToggle = document.getElementById('themeToggle');
+// Theme Toggle Logic
+const themeBtn = document.getElementById('theme-toggle');
+const body = document.body;
 
-// Theme Toggle
-
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-
-    if(document.body.classList.contains('dark')){
-        themeToggle.innerHTML = '☀️';
+themeBtn.addEventListener('click', () => {
+    body.classList.toggle('dark-theme');
+    
+    if (body.classList.contains('dark-theme')) {
+        themeBtn.textContent = '☀️ Light Mode';
+    } else {
+        themeBtn.textContent = '🌙 Dark Mode';
     }
-    else{
-        themeToggle.innerHTML = '🌙';
-    }
 });
 
+// Mock Data for Products (Similar to Meesho's variety)
+const products = [
+    { id: 1, name: "Modern Blue Watch", price: "₹499", img: "https://via.placeholder.com/200" },
+    { id: 2, name: "Casual White Sneakers", price: "₹899", img: "https://via.placeholder.com/200" },
+    { id: 3, name: "Minimalist Black Wallet", price: "₹299", img: "https://via.placeholder.com/200" },
+    { id: 4, name: "Tech Backpack", price: "₹1,299", img: "https://via.placeholder.com/200" }
+];
 
-// Smooth Button Animation
-const buttons = document.querySelectorAll('button');
+const grid = document.getElementById('product-grid');
 
-buttons.forEach(button => {
-    button.addEventListener('mouseenter', () => {
-        button.style.transform = 'scale(1.05)';
+// Function to render products
+function displayProducts() {
+    products.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="${product.img}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p style="color: var(--primary-blue); font-weight: bold;">${product.price}</p>
+            <button class="cta-btn" onclick="addToCart()">Add to Cart</button>
+        `;
+        grid.appendChild(card);
     });
+}
 
-    button.addEventListener('mouseleave', () => {
-        button.style.transform = 'scale(1)';
-    });
-});
+let count = 0;
+function addToCart() {
+    count++;
+    document.getElementById('cart-count').innerText = count;
+}
 
-
-// Demo Cart Alert
-const cartButtons = document.querySelectorAll('.product-card button');
-
-cartButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        alert('Product added to cart successfully!');
-    });
-});
+// Initialize
+displayProducts();
