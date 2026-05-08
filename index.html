@@ -3,58 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quicl-Cart</title>
-
+    <title>Quicl-Cart | Modern Shopping</title>
     <link rel="stylesheet" href="style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="light-theme">
 
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="logo">
-            Quicl<span>-Cart</span>
+    <nav class="navbar">
+        <div class="logo">Quicl-<span>Cart</span></div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Orders</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button id="theme-toggle" class="toggle-btn">🌙 Dark Mode</button>
+            <div class="cart-icon">🛒 <span id="cart-count">0</span></div>
         </div>
+    </nav>
 
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#categories">Categories</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-
-        <div class="nav-right">
-            <button id="themeToggle">🌙</button>
-            <button class="cart-btn">🛒 Cart</button>
-        </div>
+    <header class="hero">
+        <h1>Welcome, Deepak</h1>
+        <p>Discover the latest trends with modern textures and lightning-fast delivery.</p>
+        <button class="cta-btn">Shop Now</button>
     </header>
 
+    <main class="container">
+        <section class="product-grid" id="product-grid">
+            <!-- Products will be dynamically generated here -->
+        </section>
+    </main>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Welcome to <span>Quicl-Cart</span></h1>
-            <p>
-                Smart Shopping Experience Designed by Deepak.
-                Discover premium fashion, electronics, beauty,
-                and modern lifestyle products.
-            </p>
+    <footer>
+        <p>&copy; 2026 Quicl-Cart. All rights reserved.</p>
+    </footer>
 
-            <button class="shop-btn">Shop Now</button>
-        </div>
-
-        <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop" alt="shopping">
-        </div>
-    </section>
-
-
-    <!-- Categories -->
+    <script src="script.js"></script>
+</body>
 </html>
