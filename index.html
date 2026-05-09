@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuickCart – Shop Smart, Save More</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    <marquee behavior="scroll" direction="left">
+      🚚 Free Delivery on Orders Above ₹299 &nbsp;|&nbsp; 🎉 New User? Get 20% OFF with code <strong>QUICK20</strong> &nbsp;|&nbsp; 🔥 Mega Sale Live Now – Up to 80% Off! &nbsp;|&nbsp; 📦 Track your orders in real-time!
+    </marquee>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header" id="mainHeader">
+    <div class="container header-inner">
+
+      <!-- Logo -->
+      <a href="#" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+        <div class="logo-text">
+          <span class="logo-name">QuickCart</span>
+          <span class="logo-tagline">by Deepak</span>
+        </div>
+      </a>
+
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <div class="search-category">
+          <select id="categorySelect">
+            <option>All</option>
+            <option>Women</option>
+            <option>Men</option>
+            <option>Kids</option>
+            <option>Home</option>
+            <option>Electronics</option>
+            <option>Beauty</option>
+          </select>
+        </div>
+        <input type="text" id="searchInput" placeholder="Search for sarees, kurtis, mobiles and more..." />
+        <button class="search-btn" onclick="handleSearch()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+
+      <!-- Header Right Actions -->
+      <div class="header-actions">
+
+        <!-- Dark/Light Toggle Button -->
+        <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+          <div class="toggle-track">
+            <span class="toggle-icon sun"><i class="fa-solid fa-sun"></i></span>
+            <span class="toggle-icon moon"><i class="fa-solid fa-moon"></i></span>
+            <div class="toggle-thumb"></div>
+          </div>
+        </div>
+
+        <!-- Profile Dropdown -->
+        <div class="action-btn" id="profileBtn" onclick="toggleDropdown('profileDropdown')">
+          <i class="fa-regular fa-user"></i>
+          <span>Profile</span>
+          <div class="dropdown-menu" id="profileDropdown">
+            <div class="dropdown-header">
+              <div class="avatar">D</div>
+              <div>
+                <div class="d-name">Deepak</div>
+                <div class="d-email">deepak@quickcart.in</div>
+              </div>
+            </div>
+            <hr/>
+            <a href="#"><i class="fa-solid fa-bag-shopping"></i> My Orders</a>
+            <a href="#"><i class="fa-solid fa-heart"></i> Wishlist</a>
+            <a href="#"><i class="fa-solid fa-location-dot"></i> My Addresses</a>
+            <a href="#"><i class="fa-solid fa-wallet"></i> QuickPay Wallet</a>
+            <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+            <hr/>
+            <a href="#" class="logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+          </div>
+        </div>
+
+        <!-- Wishlist -->
+        <div class="action-btn" onclick="showToast('❤️ Wishlist feature coming soon!', 'info')">
+          <i class="fa-regular fa-heart"></i>
+          <span>Wishlist</span>
+          <span class="badge" id="wishlistBadge">0</span>
+        </div>
+
+        <!-- Cart -->
+        <div class="action-btn cart-btn" onclick="toggleCart()">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>Cart</span>
+          <span class="badge" id="cartBadge">0</span>
+        </div>
+
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <i class="fa-solid fa-bars" id="menuIcon"></i>
+      </button>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navBar">
+      <div class="container nav-inner">
+        <ul class="nav-links">
+          <li><a href="#" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li class="has-mega">
+            <a href="#">Women <i class="fa-solid fa-chevron-down"></i></a>
+            <div class="mega-menu">
+              <div class="mega-col">
+                <h4>Ethnic Wear</h4>
+                <a href="#">Sarees</a><a href="#">Kurtis</a><a href="#">Lehengas</a><a href="#">Salwar Suits</a>
+              </div>
+              <div class="mega-col">
+                <h4>Western Wear</h4>
+                <a href="#">Tops &amp; Tunics</a><a href="#">Jeans &amp; Pants</a><a href="#">Dresses</a><a href="#">Skirts</a>
+              </div>
+              <div class="mega-col">
+                <h4>Accessories</h4>
+                <a href="#">Jewellery</a><a href="#">Handbags</a><a href="#">Footwear</a><a href="#">Watches</a>
+              </div>
+            </div>
+          </li>
+          <li class="has-mega">
+            <a href="#">Men <i class="fa-solid fa-chevron-down"></i></a>
+            <div class="mega-menu">
+              <div class="mega-col">
+                <h4>Topwear</h4>
+                <a href="#">Shirts</a><a href="#">T-Shirts</a><a href="#">Kurtas</a><a href="#">Jackets</a>
+              </div>
+              <div class="mega-col">
+                <h4>Bottomwear</h4>
+                <a href="#">Jeans</a><a href="#">Trousers</a><a href="#">Shorts</a><a href="#">Joggers</a>
+              </div>
+              <div class="mega-col">
+                <h4>Accessories</h4>
+                <a href="#">Footwear</a><a href="#">Wallets</a><a href="#">Watches</a><a href="#">Caps</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="#">Kids</a></li>
+          <li><a href="#">Home &amp; Kitchen</a></li>
+          <li><a href="#">Electronics</a></li>
+          <li><a href="#">Beauty</a></li>
+          <li class="highlight"><a href="#"><i class="fa-solid fa-fire"></i> Mega Sale</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO SLIDER -->
+  <section class="hero-section">
+    <div class="hero-slider" id="heroSlider">
+      <div class="slide slide-1 active">
+        <div class="slide-content">
+          <span class="slide-tag">🔥 Mega Fashion Sale</span>
+          <h1>Style that <br><span>Speaks for You</span></h1>
+          <p>Up to 80% off on Women's Ethnic Wear</p>
+          <div class="slide-btns">
+            <button class="btn-primary" onclick="scrollToProducts()">Shop Now</button>
+            <button class="btn-outline" onclick="scrollToProducts()">Explore All</button>
+          </div>
+        </div>
+        <div class="hero-badge">
+          <div class="badge-circle">
+            <span>UP TO</span>
+            <strong>80%</strong>
+            <span>OFF</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide slide-2">
+        <div class="slide-content">
+          <span class="slide-tag">⚡ New Arrivals</span>
+          <h1>Men's Premium <br><span>Collection</span></h1>
+          <p>Latest trends at unbeatable prices</p>
+          <div class="slide-btns">
+            <button class="btn-primary" onclick="scrollToProducts()">Shop Men's</button>
+            <button class="btn-outline" onclick="scrollToProducts()">View Catalog</button>
+          </div>
+        </div>
+        <div class="hero-badge">
+          <div class="badge-circle">
+            <span>FROM</span>
+            <strong>₹99</strong>
+            <span>ONLY</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide slide-3">
+        <div class="slide-content">
+          <span class="slide-tag">🎁 Electronics Fest</span>
+          <h1>Gadgets &amp; <br><span>Gizmos Galore</span></h1>
+          <p>Phones, Earbuds &amp; Accessories on Sale</p>
+          <div class="slide-btns">
+            <button class="btn-primary" onclick="scrollToProducts()">Shop Now</button>
+            <button class="btn-outline" onclick="scrollToProducts()">Best Deals</button>
+          </div>
+        </div>
+        <div class="hero-badge">
+          <div class="badge-circle">
+            <span>SAVE</span>
+            <strong>60%</strong>
+            <span>TODAY</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="slider-btn prev" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="slider-btn next" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="slider-dots" id="sliderDots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="categories-section container">
+    <h2 class="section-label">Shop by Category</h2>
+    <div class="categories-grid">
+      <div class="cat-pill" onclick="filterProducts('women')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#ff6b9d,#ff8fb1)"><i class="fa-solid fa-person-dress"></i></div>
+        <span>Women</span>
+      </div>
+      <div class="cat-pill" onclick="filterProducts('men')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#4facfe,#00f2fe)"><i class="fa-solid fa-person"></i></div>
+        <span>Men</span>
+      </div>
+      <div class="cat-pill" onclick="filterProducts('kids')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#f9ca24,#f0932b)"><i class="fa-solid fa-child"></i></div>
+        <span>Kids</span>
+      </div>
+      <div class="cat-pill" onclick="filterProducts('home')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#6c5ce7,#a29bfe)"><i class="fa-solid fa-couch"></i></div>
+        <span>Home</span>
+      </div>
+      <div class="cat-pill" onclick="filterProducts('electronics')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#00b894,#00cec9)"><i class="fa-solid fa-mobile-screen"></i></div>
+        <span>Electronics</span>
+      </div>
+      <div class="cat-pill" onclick="filterProducts('beauty')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#e84393,#d63031)"><i class="fa-solid fa-star"></i></div>
+        <span>Beauty</span>
+      </div>
+      <div class="cat-pill" onclick="filterProducts('sports')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#0984e3,#74b9ff)"><i class="fa-solid fa-dumbbell"></i></div>
+        <span>Sports</span>
+      </div>
+      <div class="cat-pill" onclick="filterProducts('bags')">
+        <div class="cat-icon" style="background:linear-gradient(135deg,#e17055,#fdcb6e)"><i class="fa-solid fa-bag-shopping"></i></div>
+        <span>Bags</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLASH DEALS -->
+  <section class="flash-deal-section container">
+    <div class="flash-header">
+      <div class="flash-left">
+        <i class="fa-solid fa-bolt flash-icon"></i>
+        <h2>Flash Deals</h2>
+        <span class="flash-tag">Limited Time</span>
+      </div>
+      <div class="flash-timer">
+        <span>Ends in:</span>
+        <div class="time-box" id="timerH">00</div><span class="colon">:</span>
+        <div class="time-box" id="timerM">00</div><span class="colon">:</span>
+        <div class="time-box" id="timerS">00</div>
+      </div>
+      <a href="#" class="view-all-link">View All <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="flash-products" id="flashProducts"></div>
+  </section>
+
+  <!-- PROMO BANNERS -->
+  <section class="promo-banners container">
+    <div class="promo-grid">
+      <div class="promo-card promo-1">
+        <div class="promo-content">
+          <span class="promo-tag">New Season</span>
+          <h3>Women's Kurtis</h3>
+          <p>From ₹149 only</p>
+          <button class="btn-sm" onclick="scrollToProducts()">Shop Now</button>
+        </div>
+      </div>
+      <div class="promo-card promo-2">
+        <div class="promo-content">
+          <span class="promo-tag">Bestseller</span>
+          <h3>Men's Shirts</h3>
+          <p>Starting ₹199</p>
+          <button class="btn-sm" onclick="scrollToProducts()">Grab Now</button>
+        </div>
+      </div>
+      <div class="promo-card promo-3">
+        <div class="promo-content">
+          <span class="promo-tag">🔥 Hot Deal</span>
+          <h3>Earbuds &amp; More</h3>
+          <p>Up to 70% Off</p>
+          <button class="btn-sm" onclick="scrollToProducts()">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS SECTION -->
+  <section class="products-section container" id="productsSection">
+    <div class="section-header">
+      <div class="section-title">
+        <h2>Trending Products</h2>
+        <p>Handpicked just for you</p>
+      </div>
+      <div class="filter-sort">
+        <div class="sort-group">
+          <label>Sort:</label>
+          <select id="sortSelect" onchange="sortProducts()">
+            <option value="default">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+            <option value="newest">Newest First</option>
+          </select>
+        </div>
+        <div class="view-toggle">
+          <button id="gridBtn" class="view-btn active" onclick="setView('grid')"><i class="fa-solid fa-grip"></i></button>
+          <button id="listBtn" class="view-btn" onclick="setView('list')"><i class="fa-solid fa-list"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Tags -->
+    <div class="filter-tags" id="filterTags">
+      <button class="filter-tag active" onclick="filterProducts('all')">All</button>
+      <button class="filter-tag" onclick="filterProducts('women')">Women</button>
+      <button class="filter-tag" onclick="filterProducts('men')">Men</button>
+      <button class="filter-tag" onclick="filterProducts('kids')">Kids</button>
+      <button class="filter-tag" onclick="filterProducts('electronics')">Electronics</button>
+      <button class="filter-tag" onclick="filterProducts('home')">Home</button>
+      <button class="filter-tag" onclick="filterProducts('beauty')">Beauty</button>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="productGrid"></div>
+
+    <div class="load-more-wrapper">
+      <button class="btn-load-more" id="loadMoreBtn" onclick="loadMoreProducts()">
+        <i class="fa-solid fa-rotate"></i> Load More Products
+      </button>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features-section">
+    <div class="container features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+        <h4>Free Delivery</h4>
+        <p>On orders above ₹299</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-rotate-left"></i></div>
+        <h4>Easy Returns</h4>
+        <p>7-day hassle-free returns</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h4>Secure Payments</h4>
+        <p>100% safe &amp; encrypted</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-headset"></i></div>
+        <h4>24/7 Support</h4>
+        <p>Always here to help you</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-tag"></i></div>
+        <h4>Best Prices</h4>
+        <p>Guaranteed lowest prices</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section">
+    <div class="container newsletter-inner">
+      <div class="newsletter-text">
+        <h2>Stay in the Loop! 📩</h2>
+        <p>Subscribe to get the best deals, new arrivals &amp; exclusive offers.</p>
+      </div>
+      <div class="newsletter-form">
+        <input type="email" id="newsletterEmail" placeholder="Enter your email address" />
+        <button onclick="subscribeNewsletter()">Subscribe <i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div class="logo-text">
+            <span class="logo-name">QuickCart</span>
+            <span class="logo-tagline">by Deepak</span>
+          </div>
+        </div>
+        <p>Your one-stop destination for fashion, electronics, home essentials and more — all at the best prices!</p>
+        <div class="social-links">
+          <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="footer-links">
+        <h4>Customer Help</h4>
+        <a href="#">Track Order</a>
+        <a href="#">Easy Returns</a>
+        <a href="#">Size Guide</a>
+        <a href="#">FAQ</a>
+        <a href="#">Report Abuse</a>
+      </div>
+      <div class="footer-links">
+        <h4>Policies</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Shipping Policy</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+      <div class="footer-app">
+        <h4>Download App</h4>
+        <p>Shop on-the-go with QuickCart!</p>
+        <a href="#" class="app-store-btn"><i class="fa-brands fa-google-play"></i> Google Play</a>
+        <a href="#" class="app-store-btn"><i class="fa-brands fa-apple"></i> App Store</a>
+        <div class="payment-icons">
+          <span title="Visa"><i class="fa-brands fa-cc-visa"></i></span>
+          <span title="Mastercard"><i class="fa-brands fa-cc-mastercard"></i></span>
+          <span title="PayPal"><i class="fa-brands fa-cc-paypal"></i></span>
+          <span title="COD"><i class="fa-solid fa-money-bill-wave"></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 QuickCart by <strong>Deepak</strong>. All Rights Reserved. Made with ❤️ in India 🇮🇳</p>
+    </div>
+  </footer>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fa-solid fa-cart-shopping"></i> My Cart</h3>
+      <button class="close-cart" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="empty-cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <p>Your cart is empty!</p>
+        <button onclick="toggleCart()">Start Shopping</button>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-summary">
+        <div class="summary-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+        <div class="summary-row"><span>Delivery</span><span class="free-tag">FREE</span></div>
+        <div class="summary-row"><span>Discount</span><span id="cartDiscount" class="discount-val">-₹0</span></div>
+        <hr/>
+        <div class="summary-row total-row"><span>Total Payable</span><span id="cartTotal">₹0</span></div>
+      </div>
+      <button class="checkout-btn" onclick="checkout()">
+        Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- PRODUCT QUICK VIEW MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+  <div class="product-modal" id="productModal">
+    <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
